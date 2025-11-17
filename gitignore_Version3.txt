@@ -1,0 +1,17 @@
+# Java / Maven
+target/
+*.log
+*.class
+
+# IntelliJ
+.idea/
+*.iml
+
+# Node / Frontend builds
+node_modules/
+
+# OS
+.DS_Store
+
+# Docker
+db-data/
