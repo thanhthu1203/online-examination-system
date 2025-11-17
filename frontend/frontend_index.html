@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <title>Online Examination System</title>
+  <link rel="stylesheet" href="css/styles.css"/>
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand">
+      <div class="logo" aria-hidden>OES</div>
+      <div class="brand-text">
+        <h1>Online Examination</h1>
+        <p class="tag">University Exam Management</p>
+      </div>
+    </div>
+    <nav class="top-nav" role="navigation" aria-label="Main">
+      <button id="nav-courses" class="nav-btn">Courses</button>
+      <button id="nav-student" class="nav-btn">Student</button>
+      <button id="nav-admin" class="nav-btn">Admin</button>
+      <div class="auth-actions">
+        <button id="btn-open-login" class="btn btn-ghost">Login</button>
+        <button id="btn-open-register" class="btn btn-primary">Register</button>
+      </div>
+    </nav>
+  </header>
+
+  <main id="app" class="container">
+    <div id="toast" class="toast" role="status" aria-live="polite" hidden></div>
+
+    <section id="view-courses" class="view">
+      <h2>Courses</h2>
+      <div id="courses-grid" class="grid"></div>
+    </section>
+
+    <section id="view-student" class="view" hidden>
+      <div class="dashboard">
+        <div class="card column">
+          <h3>Profile</h3>
+          <div id="student-profile"></div>
+        </div>
+
+        <div class="card column">
+          <h3>Enrolled Courses</h3>
+          <ul id="student-enrolled" class="list"></ul>
+        </div>
+
+        <div class="card column">
+          <h3>Upcoming Exams (Calendar)</h3>
+          <div id="exam-calendar" class="calendar"></div>
+        </div>
+
+        <div class="card column">
+          <h3>Results</h3>
+          <table id="student-results" class="table">
+            <thead><tr><th>Course</th><th>Exam</th><th>Score</th></tr></thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="view-admin" class="view" hidden>
+      <div class="admin-grid">
+        <div class="card">
+          <h3>Create Course</h3>
+          <form id="form-create-course" class="form">
+            <label>Course ID<input name="courseId" required/></label>
+            <label>Course Name<input name="courseName" required/></label>
+            <button class="btn btn-primary" type="submit">Create</button>
+          </form>
+        </div>
+
+        <div class="card">
+          <h3>Create Exam</h3>
+          <form id="form-create-exam" class="form">
+            <label>Exam ID<input name="examId" required/></label>
+            <label>Course ID<input name="courseId" required/></label>
+            <label>Type (M/F)<input name="eType" maxlength="1"/></label>
+            <label>Room<input name="room"/></label>
+            <label>Test Date<input name="testDate" type="datetime-local"/></label>
+            <label>Duration (minutes)<input name="duration" type="number" min="1"/></label>
+            <button class="btn btn-primary" type="submit">Create Exam</button>
+          </form>
+        </div>
+
+        <div class="card full-width">
+          <h3>Upload Result (CSV)</h3>
+          <form id="form-upload-result" class="form" enctype="multipart/form-data">
+            <label>CSV File<input id="csv-file" name="file" type="file" accept=".csv" required/></label>
+            <button class="btn btn-primary" type="submit">Upload CSV</button>
+          </form>
+        </div>
+
+        <div class="card full-width">
+          <h3>Exam Registrations</h3>
+          <div id="admin-exam-registrations">Select an exam to view registered students (use API)</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <dialog id="dlg-login" class="modal" aria-labelledby="login-title">
+    <form method="dialog" id="form-login" class="modal-content">
+      <h2 id="login-title">Login</h2>
+      <label>Student/Admin ID<input name="username" required/></label>
+      <label>Password<input name="password" type="password" required/></label>
+      <div class="modal-actions">
+        <button type="submit" class="btn btn-primary">Login</button>
+        <button id="btn-login-cancel" class="btn btn-ghost">Cancel</button>
+      </div>
+    </form>
+  </dialog>
+
+  <dialog id="dlg-register" class="modal" aria-labelledby="register-title">
+    <form method="dialog" id="form-register" class="modal-content">
+      <h2 id="register-title">Student Registration</h2>
+      <label>Student ID<input name="studentId" required/></label>
+      <label>Full name<input name="sName" required/></label>
+      <label>Phone<input name="phone" required/></label>
+      <label>Password<input name="password" type="password" required/></label>
+      <div class="modal-actions">
+        <button type="submit" class="btn btn-primary">Register</button>
+        <button id="btn-register-cancel" class="btn btn-ghost">Cancel</button>
+      </div>
+    </form>
+  </dialog>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
